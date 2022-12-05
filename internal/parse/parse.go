@@ -1,25 +1,26 @@
 package parse
 
 import (
-	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
 
 func Lines(filename string) []string {
-	dat, err := ioutil.ReadFile(filename)
+	dat, err := os.ReadFile(filename)
 	check(err)
-	return strings.Split(string(dat), "\n")
+	lines := strings.Split(string(dat), "\n")
+	return lines[:len(lines)-1] // strip final line which will be blank
 }
 
 func String(filename string) string {
-	dat, err := ioutil.ReadFile(filename)
+	dat, err := os.ReadFile(filename)
 	check(err)
 	return string(dat)
 }
 
 func Ints(filename, separator string) []int {
-	dat, err := ioutil.ReadFile(filename)
+	dat, err := os.ReadFile(filename)
 	if err != nil {
 		panic(err)
 	}
