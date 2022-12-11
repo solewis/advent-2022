@@ -55,11 +55,11 @@ func simulateRope(input []string, ropeLength int) int {
 	for i := 0; i < ropeLength; i++ {
 		rope = append(rope, &Point{0, 0})
 	}
-	visited := map[Point]bool{Point{0, 0}: true}
+	head := rope[0]
+	tail := rope[len(rope)-1]
+	visited := map[Point]bool{tail.copy(): true}
 	for _, step := range input {
 		parts := strings.Split(step, " ")
-		head := rope[0]
-		tail := rope[len(rope)-1]
 		for i := 0; i < parse.Int(parts[1]); i++ {
 			switch parts[0] {
 			case "R":
