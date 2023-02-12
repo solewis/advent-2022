@@ -16,7 +16,7 @@ func Lines(filename string) []string {
 func String(filename string) string {
 	dat, err := os.ReadFile(filename)
 	check(err)
-	return string(dat)
+	return string(dat)[:len(dat)-1]
 }
 
 func Ints(filename, separator string) []int {
